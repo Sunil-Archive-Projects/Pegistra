@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Patient Registration</title>
+<meta charset="utf-8">
+ <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+        <meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="aruThewarrior">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css">
+
+
+<style type="text/css">
+
+input.error {
+	border: 1px dotted #E41B17;
+}
+
+textarea.error {
+	border: 1px dotted #E41B17;
+}
+
+form.patientSearch label.error,label.error {
+	color: #E41B17;
+	font-style: italic
+}
+</style>
+
+</head>
+<body>
+       
+	<div class="page-header" align="center">
+
+     <input type="text" id="statusBox" name="statusBox" readonly>
+
+		<h1 style="font-family: Brush Script MT">
+			Patient Registration <small>Hack for first hand</small>
+		</h1>
+	</div>
+	<div class="container">
+		<div class="well" align="center">
+			<form id="patientSearch" class="form-inline">
+
+				<div class="form-group">
+
+					<input type="text" class="form-control" id="patientId"
+						name="patientId" placeholder="Patient ID" required="required">
+				</div>
+
+				<button type="submit" class="btn btn-primary" rel="tooltip"
+					title="Click to search a patient">Search</button>
+
+				<button type="button" onclick="showAddNew();"
+					class="btn btn-primary" rel="tooltip"
+					title="Click to register a patient">Add New Patient</button>
+			</form>
+
+
+			<br>
+	
+			<div style="display: none;" id="patientDetailPanel"
+				class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title pull-left">Patient Details</h3>
+					<button onclick="showEditPatient();" class="btn  pull-right">Edit</button>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-body">
+					<div class="row-fluid">
+						<div id="patientDetails" class="col-xs-12">
+							<div class="table-responsive">
+								<table class="table">
+									<tr>
+										<th style="width: 50%">Patient Id :</th>
+										<td id="patIdTD" style="text-transform: uppercase;"></td>
+									</tr>
+									<tr>
+										<th style="width: 50%">Registration Date :</th>
+										<td id="regDate" style="text-transform: uppercase;"></td>
+									</tr>
+									<tr>
+										<th style="width: 50%">Patient First Name:</th>
+										<td id="patName" style="text-transform: uppercase;">
+										<label id="patFName">
+										<label id="patMName">
+										<label id="patlName"></td>
+									</tr>
+                                    <tr>
+                                        <th style="width: 50%">Patient Name:</th>
+                                        <td id="patName" style="text-transform: uppercase;">
+                                        <label id="patFName">
+                                        <label id="patMName">
+                                        <label id="patlName"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 50%">Patient Name:</th>
+                                        <td id="patName" style="text-transform: uppercase;">
+                                        <label id="patFName">
+                                        <label id="patMName">
+                                        <label id="patlName"></td>
+                                    </tr>
+									<tr>
+										<th style="width: 50%">Gender :</th>
+
+										<td id="patSex" style="text-transform: uppercase;"></td>
+
+
+									</tr>
+									<tr>
+										<th style="width: 50%">Age :</th>
+
+										<td id="patAge" ><input id=""></td>
+
+
+									</tr>
+									<tr>
+										<th style="width: 50%">Phone No :</th>
+
+										<td id="patPhone" ></td>
+
+									</tr>
+									<tr>
+										<th style="width: 50%">Address :</th>
+
+										<td id="patAdd" style="text-transform: uppercase;"></td>
+
+
+									</tr>
+									<tr>
+										<th style="width: 50%">Medical History :</th>
+
+										<td id="patMed" style="text-transform: uppercase;"></td>
+                                        <input type="hidden" id="rev" >
+
+									</tr>
+                                     
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div id="statusMessage" class="alert alert-success"
+				style="display: none; text-align: center; font-size: 12pt">Patient Successfully added or updated .</div>
+		<div style="display: none;" class="well" id="regisWell" align="center">
+
+              
+
+			<form id="registrationForm" class="form-horizontal">
+				<legend id="newPatient">New Patient Registration</legend>
+				<legend id="editPatient" style="display: none;">Edit
+					Patient Details</legend>
+				<div id="patId" style="display: none;" class="form-group">
+
+					<label for="patientregisNo" class="control-label col-xs-2">Patient
+						ID</label>
+					<div class="col-xs-10">
+
+						<input id="patientregisNo" type="text" 
+							name="patientregisNo" class="form-control" disabled>
+
+					</div>
+
+				</div>
+				<div id="regDate" style="display: none;" class="form-group">
+
+					<label for="registrationDate" class="control-label col-xs-2">Registration
+						Date</label>
+					<div class="col-xs-10">
+
+						<input type="text" id="registrationDate" name="registrationDate"
+							 class="form-control" disabled>
+
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label for="fname" class="control-label col-xs-2">First
+						Name</label>
+					<div class="col-xs-10">
+
+						<input type="text" id="fname" name="fname"
+							placeholder="First Name" class="form-control " required>
+
+					</div>
+				</div>
+				<div class="form-group ">
+					<label class="control-label col-xs-2">Middle Name</label>
+					<div class="col-xs-10">
+						<input type="text" class="form-control" id="mname" name="mname"
+							placeholder="Middle Name">
+
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-xs-2">Last Name</label>
+					<div class="col-xs-10">
+						<input type="text" class="form-control" id="lname" name="lname"
+							placeholder="Last Name" required>
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label class="control-label col-xs-2">Gender</label>
+					<div class="col-xs-2">
+
+						<input type="radio" id="male" name="gender" value="M">Male
+						<input type="radio" id="female" value="F" name="gender">Female
+						<label for="gender" style="display: none;" class="error"></label>
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label class="control-label col-xs-2">Age</label>
+					<div class="col-xs-10">
+
+						<input type="text" class="form-control" id="age" name="age"
+							placeholder="Age" required="required">
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label class="control-label col-xs-2">Phone No</label>
+					<div class="col-xs-10">
+
+						<input type="text" class="form-control" id="phone" name="phone"
+							placeholder="Phone #" required="required">
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label class="control-label col-xs-2">Address</label>
+					<div class="col-xs-10">
+
+						<textarea id="address" name="address" class="form-control"
+							rows="10" cols="50" placeholder="Add patient address" required></textarea>
+
+					</div>
+
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-xs-2">Medical Conditions</label>
+					<div class="col-xs-10">
+
+						<textarea id="medical" name="medical" class="form-control"
+							rows="10" cols="50" placeholder="Add patient medical conditions"></textarea>
+
+					</div>
+
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-xs-2"></label>
+					<div class="col-xs-10">
+						<button id="registerbutton" type="submit" class="btn btn-success"
+							rel="tooltip" title="Click to register a patient">Register</button>
+						<button id="updatebutton" style="display: none;" type="submit"
+							class="btn btn-success" rel="tooltip"
+							title="Click to update a patient">Update</button>
+
+						<button id="cancel" onclick="clearForm();" type="button"
+							class="btn btn-success" rel="tooltip" title="Click to cancel">Cancel</button>
+
+					</div>
+
+				</div>
+
+               
+
+			</form>
+
+            
+		</div>
+	</div>
+
+
+
+
+	<!-- Javascript placed at the end of the file to make the  page load faster -->
+	<!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="cordova.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/jquery.validate.js"></script>
+    <script type="text/javascript" src="js/pouchdb-5.0.0.min.js"></script>   
+    <script type="text/javascript" src="js/db.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+    
+    <script type="text/javascript" src="js/pouchdb.upsert.min.js"></script>
+
+
+</body>
+</html>
+
